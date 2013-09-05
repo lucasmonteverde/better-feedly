@@ -1,0 +1,12 @@
+/* just go away!, all of you! */
+#sideArea, #feedlyProBar,.websiteCallForAction{display:none!important}
+
+/* enhance! */
+#feedlyFrame,#feedlyPart,#feedlyPage{width:100%!important}
+#feedlyPart0{padding-right: 33px!important}
+#feedlyPart{padding:0!important}
+.entryBody{max-width:100%!important}
+
+/* black magics! */
+.bottomWikiWidget > div > div:first-child{display:none!important}
+.bottomWikiWidget > div > div:nth-child(2) :not(:first-child){display:none!important}
