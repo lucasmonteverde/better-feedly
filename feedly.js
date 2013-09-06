@@ -21,7 +21,6 @@
 
 NodeList.prototype.forEach = HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
-
 /* var port = chrome.runtime.connect({name: "feedly"});
 port.onMessage.addListener(function(request) {
 	if (request.action == "xhr"){
@@ -34,35 +33,31 @@ port.onMessage.addListener(function(request) {
 		console.log('lets do this!');
 	}
 }); */
-  
+
 (function(d){
 	"use strict";
 	
-	var counters, all;
+	var categories, feeds, all;
 	
 	setInterval(function(){
 
-		counters = counters || document.querySelectorAll('.simpleUnreadCount');
+		categories = categories || document.querySelectorAll('.categoryUnreadCount');
+		feeds = feeds || document.querySelectorAll('.feedIndexTitleHolder.emptyAware');
 		all = all || document.querySelector('#latesttab_header > div:first-child');
 		
-		var totalCount = 0,
-			result = getCounter( all );
+		var totalCount = getCounter( all );
 		
-		if( result === 0){
+		if( totalCount === 0){
 			
-			counters.forEach(function(item){
-				var result = getCounter( item );
-				
-				if(result && item.classList.contains('categoryUnreadCount') ){
-					totalCount += result;
-				}
-				
-				item.parentNode.style.display = (result ? 'block' : 'none');
+			categories.forEach(function(item){
+				totalCount += getCounter( item );
 			});
 		
-		}else{
-			totalCount = result;
 		}
+		
+		feeds.forEach(function(item){
+			item.parentNode.style.display = (item.classList.contains('empty') ? 'none' : 'block');
+		});
 		
 		var title = d.title.replace(/^(\([0-9]+\)\s)/gi, '');
 		d.title = '(' + totalCount + ') ' + title;
