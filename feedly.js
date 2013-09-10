@@ -21,26 +21,22 @@
 
 NodeList.prototype.forEach = HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
-/* var port = chrome.runtime.connect({name: "feedly"});
-port.onMessage.addListener(function(request) {
-	if (request.action == "xhr"){
-		console.log('lets do this!');
-	}
-}); */
-  
-/* chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 	if (request.action === "feedlyRequest"){
-		console.log('lets do this!');
+		
+		feedlyRequest();
 	}
-}); */
+});
 
 (function(d){
 	"use strict";
 	
-	var categories, feeds, all;
+	var categories, feeds, all, firstRun = true;
 	
 	setInterval(function(){
 
+		firstRun && feedlyLoad();
+		
 		categories = categories || document.querySelectorAll('.categoryUnreadCount');
 		feeds = feeds || document.querySelectorAll('.feedIndexTitleHolder.emptyAware');
 		all = all || document.querySelector('#latesttab_header > div:first-child');
@@ -64,12 +60,14 @@ port.onMessage.addListener(function(request) {
 		
 	}, 2000);
 	
-	setTimeout(function(){
+	function feedlyLoad(){
 		var logo = d.getElementById('navSelector_my');
 		
-		if(logo) logo.dataset.uri = 'latest';
-		
-	}, 3000);
+		if(logo) {
+			logo.dataset.uri = 'latest';
+			firstRun = false;
+		}
+	}
 	
 	function getCounter( elem ){
 		var count = 0;
