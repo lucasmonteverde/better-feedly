@@ -45,8 +45,6 @@ port.onMessage.addListener(function(request) {
 		feeds = document.querySelectorAll('.feedIndexTitleHolder.emptyAware');
 		all = document.querySelector('#latesttab_header > div:first-child');
 		
-		//console.log(categories, feeds, all);
-		
 		var totalCount = getCounter( all );
 		
 		if( totalCount === 0){
