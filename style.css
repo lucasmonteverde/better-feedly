@@ -1,5 +1,5 @@
 /* just go away!, all of you! */
-#sideArea, #feedlyProBar,.websiteCallForAction{display:none!important}
+#sideArea, #feedlyMessageBar, #feedlyProBar,.websiteCallForAction{display:none!important}
 
 /* enhance! */
 #feedlyFrame,#feedlyPart,#feedlyPage{width:100%!important}

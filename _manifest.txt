@@ -1,0 +1,29 @@
+{
+	"name": "Better Feedly",
+	"description": "Feedly Cleanup",
+	"version": "0.3",
+	"manifest_version": 2,
+	
+	/* "permissions": [
+		"tabs", "webRequest","*://cloud.feedly.com/*"
+	], */
+	
+	/* "background": {
+		"scripts": ["hooks.js"],
+		"persistent": true
+	}, */
+  
+	"content_scripts": [
+		{
+			"matches": [ "*://*.feedly.com/*", "*://feedly.com/*"],
+			"js": ["feedly.js"],
+			"css": ["style.css"],
+			"run_at": "document_end"
+		}
+		/* {
+			"matches": [ "*://*.feedly.com/*", "*://feedly.com/*"],
+			"js": ["hooks.js"],
+			"run_at": "document_start"
+		} */
+	]
+}

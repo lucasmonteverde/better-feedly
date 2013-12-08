@@ -39,11 +39,13 @@ port.onMessage.addListener(function(request) {
 	
 	var categories, feeds, all;
 	
-	setInterval(function(){
+	function parseFeeds(){
 
-		categories = categories || document.querySelectorAll('.categoryUnreadCount');
-		feeds = feeds || document.querySelectorAll('.feedIndexTitleHolder.emptyAware');
-		all = all || document.querySelector('#latesttab_header > div:first-child');
+		categories = document.querySelectorAll('.categoryUnreadCount');
+		feeds = document.querySelectorAll('.feedIndexTitleHolder.emptyAware');
+		all = document.querySelector('#latesttab_header > div:first-child');
+		
+		//console.log(categories, feeds, all);
 		
 		var totalCount = getCounter( all );
 		
@@ -56,20 +58,43 @@ port.onMessage.addListener(function(request) {
 		}
 		
 		feeds.forEach(function(item){
-			item.parentNode.style.display = (item.classList.contains('empty') ? 'none' : 'block');
+			if(item && item.parentNode)
+				item.parentNode.style.display = (item.classList.contains('empty') ? 'none' : 'block');
+			else{
+				feeds = undefined; //force reset selector
+			}
 		});
 		
 		var title = d.title.replace(/^(\([0-9]+\)\s)/gi, '');
 		d.title = '(' + totalCount + ') ' + title;
 		
-	}, 2000);
+		setTimeout(parseFeeds, 2000);
+	}
+	setTimeout(parseFeeds, 2000);
 	
-	setTimeout(function(){
+	function getLogo(){
 		var logo = d.getElementById('navSelector_my');
 		
-		if(logo) logo.dataset.uri = 'latest';
+		if(logo){
+			logo.dataset.uri = 'latest';
+		}else{
+			setTimeout(getLogo, 1000);
+		}
+	}
+	setTimeout(getLogo, 1000);
+	
+	/* setTimeout(function(){
+		var tabs = d.getElementById('feedlyTabs');
 		
-	}, 3000);
+		if(tabs){
+			tabs.addEventListener('DOMSubtreeModified', function(e, d) {
+				console.log('tree changed', e, d);
+			});
+		}else{
+			setTimeout(this, 1000);
+		}
+		
+	}, 1000); */
 	
 	function getCounter( elem ){
 		var count = 0;
