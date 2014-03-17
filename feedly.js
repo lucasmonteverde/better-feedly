@@ -70,17 +70,6 @@ port.onMessage.addListener(function(request) {
 	}
 	setTimeout(parseFeeds, 2000);
 	
-	function getLogo(){
-		var logo = d.getElementById('navSelector_my');
-		
-		if(logo){
-			logo.dataset.uri = 'latest';
-		}else{
-			setTimeout(getLogo, 1000);
-		}
-	}
-	setTimeout(getLogo, 1000);
-	
 	/* setTimeout(function(){
 		var tabs = d.getElementById('feedlyTabs');
 		

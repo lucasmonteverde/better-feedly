@@ -2,7 +2,7 @@
 #sideArea, #feedlyMessageBar, #feedlyProBar,.websiteCallForAction{display:none!important}
 
 /* enhance! */
-#feedlyFrame,#feedlyPart,#feedlyPage{width:100%!important}
+#mainBar,#feedlyPart,#feedlyPage{width:100%!important}
 #feedlyPart0{padding-right: 33px!important}
 #feedlyPart{padding:0!important}
 .entryBody{max-width:100%!important}
