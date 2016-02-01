@@ -5,8 +5,12 @@
 #mainBar,#feedlyPart,#feedlyPage{width:100%!important}
 #feedlyPart0{padding-right: 33px!important}
 #feedlyPart{padding:0!important}
-.entryBody{max-width:100%!important}
+.entryBody,.u100Entry{max-width:100%!important}
 
 /* black magics! */
 .bottomWikiWidget > div > div:first-child{display:none!important}
 .bottomWikiWidget > div > div:nth-child(2) :not(:first-child){display:none!important}
+
+.fullimage{height: auto!important; max-width: 100%!important; width: 100%!important;}
+.entryHeader .title{display:inline-block!important;}
+.torrent{text-decoration: underline;margin-left: 15px;color: #A0A0A0;font-size: 12px;}

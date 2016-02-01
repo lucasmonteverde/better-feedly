@@ -37,7 +37,7 @@ port.onMessage.addListener(function(request) {
 (function(d){
 	"use strict";
 	
-	var categories, feeds, all;
+	var categories, feeds, all, SERVER = 'http://ab-feed.herokuapp.com/file/'; //http://localhost:3000/file/
 	
 	function parseFeeds(){
 
@@ -47,7 +47,7 @@ port.onMessage.addListener(function(request) {
 		
 		var totalCount = getCounter( all );
 		
-		if( totalCount === 0){
+		if( totalCount === 0 ) {
 			
 			categories.forEach(function(item){
 				totalCount += getCounter( item );
@@ -65,6 +65,19 @@ port.onMessage.addListener(function(request) {
 		
 		var title = d.title.replace(/^(\([0-9]+\)\s)/gi, '');
 		d.title = '(' + totalCount + ') ' + title;
+		
+		var images = document.querySelectorAll('img[src*="stooorage.com/thumbs"]');
+		images.forEach(function(item){
+			item.onerror = function () { 
+				this.style.display = 'none';
+			}
+			
+			var title = closest(item, '.entryholder').querySelector('.title');
+			after(title, 'http://thepiratebay.se/search/' + title.innerText.replace('-',''), title.innerText );
+			
+			item.src = SERVER + item.src.replace('//t', '//img').replace('thumbs/', 'images/');
+			item.className = 'fullimage';
+		});
 		
 		setTimeout(parseFeeds, 2000);
 	}
@@ -92,6 +105,27 @@ port.onMessage.addListener(function(request) {
 			}
 		}
 		return count;
+	}
+	
+	function closest(elem, selector) {
+		while (elem) {
+			if (elem.matches(selector)) {
+				return elem;
+			} else {
+				elem = elem.parentNode;
+			}
+		}
+		return false;
+	}
+	
+	function after(elem, url, text){
+		var link = document.createElement('a');
+		link.href = encodeURI(url);
+		link.className = "torrent";
+		link.innerText = text;
+		link.target = "_blank";
+	
+		elem.parentNode.insertBefore(link, elem.nextSibling)
 	}
 
 }(document));
