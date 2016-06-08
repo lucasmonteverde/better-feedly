@@ -21,25 +21,12 @@
 
 NodeList.prototype.forEach = HTMLCollection.prototype.forEach = Array.prototype.forEach;
 
-/* var port = chrome.runtime.connect({name: "feedly"});
-port.onMessage.addListener(function(request) {
-	if (request.action == "xhr"){
-		console.log('lets do this!');
-	}
-}); */
-  
-/* chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	if (request.action === "feedlyRequest"){
-		console.log('lets do this!');
-	}
-}); */
-
 (function(d){
 	"use strict";
 	
-	var categories, feeds, all, SERVER = 'http://ab-feed.herokuapp.com/file/'; //http://localhost:3000/file/
+	var categories, feeds, all, SERVER = 'http://localhost:3000/file/';
 	
-	function parseFeeds(){
+	function parseFeeds() {
 
 		categories = document.querySelectorAll('.categoryUnreadCount');
 		feeds = document.querySelectorAll('.feedIndexTitleHolder.emptyAware');
@@ -49,23 +36,23 @@ port.onMessage.addListener(function(request) {
 		
 		if( totalCount === 0 ) {
 			
-			categories.forEach(function(item){
+			categories.forEach(function(item) {
 				totalCount += getCounter( item );
 			});
 		
 		}
 		
-		feeds.forEach(function(item){
-			if(item && item.parentNode)
+		feeds.forEach(function(item) {
+			if( item && item.parentNode )
 				item.parentNode.style.display = (item.classList.contains('empty') ? 'none' : 'block');
-			else{
+			else {
 				feeds = undefined; //force reset selector
 			}
 		});
 		
 		var title = d.title.replace(/^(\([0-9]+\)\s)/gi, '');
 		d.title = '(' + totalCount + ') ' + title;
-		
+
 		var images = document.querySelectorAll('img[src*="stooorage.com/thumbs"]');
 		images.forEach(function(item){
 			item.onerror = function () { 
@@ -83,30 +70,17 @@ port.onMessage.addListener(function(request) {
 	}
 	setTimeout(parseFeeds, 2000);
 	
-	/* setTimeout(function(){
-		var tabs = d.getElementById('feedlyTabs');
-		
-		if(tabs){
-			tabs.addEventListener('DOMSubtreeModified', function(e, d) {
-				console.log('tree changed', e, d);
-			});
-		}else{
-			setTimeout(this, 1000);
-		}
-		
-	}, 1000); */
-	
-	function getCounter( elem ){
+	function getCounter( elem ) {
 		var count = 0;
-		if(elem){
+		if( elem) {
 			var result = elem.innerText.trim().match(/[0-9]+/gi);
-			if(result && result.length > 0){
+			if( result && result.length > 0 ) {
 				count = parseInt(result[0], 10);
 			}
 		}
 		return count;
 	}
-	
+
 	function closest(elem, selector) {
 		while (elem) {
 			if (elem.matches(selector)) {

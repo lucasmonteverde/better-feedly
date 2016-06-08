@@ -1,7 +1,7 @@
 {
 	"name": "Better Feedly",
 	"description": "Feedly Cleanup",
-	"version": "0.4",
+	"version": "0.5.0",
 	"manifest_version": 2,
 	"content_scripts": [
 		{

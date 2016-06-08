@@ -5,12 +5,46 @@
 #mainBar,#feedlyPart,#feedlyPage{width:100%!important}
 #feedlyPart0{padding-right: 33px!important}
 #feedlyPart{padding:0!important}
-.entryBody,.u100Entry{max-width:100%!important}
+.entryBody,.u100Entry, #image1{max-width:100%!important; width: auto!important;}
 
 /* black magics! */
-.bottomWikiWidget > div > div:first-child{display:none!important}
+.bottomWikiWidget > div > div:first-child,
 .bottomWikiWidget > div > div:nth-child(2) :not(:first-child){display:none!important}
 
 .fullimage{height: auto!important; max-width: 100%!important; width: 100%!important;}
 .entryHeader .title{display:inline-block!important;}
 .torrent{text-decoration: underline;margin-left: 15px;color: #A0A0A0;font-size: 12px;}
+
+
+/* go black! */
+body .entryholder { background-color: transparent; }
+
+body #floatingBar,
+body #mainBar,
+body #mainBar .u100Frame,
+body #mainBar .u5Entry {
+	background-color: rgba(42, 43, 47, 0.95);
+}
+
+body .headerInfo,
+body #bigMarkAllAsReadButton { background-color: #757575; }
+
+body .u100Frame,
+body .u0Entry {
+	border-color: #757575;
+}
+
+body .u0Entry {
+	margin-bottom: 0;
+	border-left:0;
+	border-right:0;
+	border-bottom:0;
+}
+
+h1,
+.unread,
+.entryBody,
+.entryBody b,
+#bigMarkAllAsReadButton {
+	color: rgba( 255, 255, 255, 0.85 )!important;
+}
