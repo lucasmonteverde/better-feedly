@@ -1,36 +1,52 @@
 /* just go away!, all of you! */
-#sideArea, #feedlyMessageBar, #feedlyProBar,.websiteCallForAction{display:none!important}
+#sideArea, #feedlyMessageBar, #feedlyProBar,.websiteCallForAction, .widget-related-feeds{display:none!important}
 
 /* enhance! */
 #mainBar,#feedlyPart,#feedlyPage{width:100%!important}
 #feedlyPart0{padding-right: 33px!important}
 #feedlyPart{padding:0!important}
-.entryBody,.u100Entry, #image1{max-width:100%!important; width: auto!important;}
+.entryBody,.u100Entry, #image1, #feedlyPageFX{max-width:100%!important; width: auto!important;}
 
 /* black magics! */
 .bottomWikiWidget > div > div:first-child,
-.bottomWikiWidget > div > div:nth-child(2) :not(:first-child){display:none!important}
+.bottomWikiWidget > div > div:nth-child(2) :not(:first-child) {display:none!important}
 
 .fullimage{height: auto!important; max-width: 100%!important; width: 100%!important;}
 .entryHeader .title{display:inline-block!important;}
 .torrent{text-decoration: underline;margin-left: 15px;color: #A0A0A0;font-size: 12px;}
 
+body .fx .entry.u5:nth-child(3n+1) {clear:none;}
+body .fx .entry.u5 { height: 300px; }
+
 
 /* go black! */
-body .entryholder { background-color: transparent; }
+body .entryholder { background-color: transparent!important; }
 
+body,
 body #floatingBar,
-body #mainBar,
+body #feedlyFrame,
+
+body #mainBarFX,
+body #searchBarFX,
+body #headerBarFX,
+body #headerBarFX header,
+body #feedlyPageHolderFX,
+body .floatingEntryScroller {
+	/* background-color: rgba(42, 43, 47, 0.95); */
+	background-color: rgb(52, 52, 56)!important;
+}
+
 body #mainBar .u100Frame,
 body #mainBar .u5Entry {
-	background-color: rgba(42, 43, 47, 0.95);
+	background: #2A2B2F;
 }
 
 body .headerInfo,
 body #bigMarkAllAsReadButton { background-color: #757575; }
 
 body .u100Frame,
-body .u0Entry {
+body .u0Entry,
+body .fx .inlineFrame {
 	border-color: #757575;
 }
 
@@ -44,7 +60,9 @@ body .u0Entry {
 h1,
 .unread,
 .entryBody,
-.entryBody b,
-#bigMarkAllAsReadButton {
+.entryBody *,
+#bigMarkAllAsReadButton,
+i.icon,
+.title {
 	color: rgba( 255, 255, 255, 0.85 )!important;
 }
